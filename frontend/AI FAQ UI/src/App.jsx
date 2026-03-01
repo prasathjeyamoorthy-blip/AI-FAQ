@@ -177,7 +177,7 @@ function App() {
               {file ? file.name : "Click or drag to upload"}
             </p>
             <p className="text-xs text-gray-500">
-              TXT, PDF, or Markdown up to 10MB
+              PDF files up to 10MB
             </p>
           </div>
 
