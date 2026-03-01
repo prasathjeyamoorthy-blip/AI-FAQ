@@ -31,21 +31,36 @@ def semantic_chunk(pages):
 
     for page in pages:
 
-        paragraphs = page["text"].split("\n\n")
+        page_text = page["text"]
+        paragraphs = page_text.split("\n\n")
+
+        char_cursor = 0   # tracks current position in page text
 
         for para in paragraphs:
+
             clean = para.strip()
+
+            # find real start position inside original text
+            start = page_text.find(para, char_cursor)
+
+            if start == -1:
+                continue
+
+            end = start + len(para)
 
             if len(clean) > 120:
                 chunks.append({
                     "chunk_id": f"chunk_{chunk_count}",
                     "page": page["page"],
                     "text": clean,
-                    "char_start": 0,
-                    "char_end": len(clean)
+                    "char_start": start,
+                    "char_end": end
                 })
 
                 chunk_count += 1
+
+            # move cursor forward to avoid matching earlier text
+            char_cursor = end
 
     return chunks
 
