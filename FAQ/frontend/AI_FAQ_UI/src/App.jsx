@@ -29,7 +29,10 @@ function App() {
     formData.append("limit", faqLimit);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload", formData);
+      const res = await axios.post(
+        "https://ai-faq-ydcq.onrender.com/upload",
+        formData,
+      );
       setData(res.data.results || []);
     } catch (error) {
       console.error("Upload failed", error);
@@ -176,9 +179,7 @@ function App() {
             <p className="text-sm font-medium text-gray-900 mb-1">
               {file ? file.name : "Click or drag to upload"}
             </p>
-            <p className="text-xs text-gray-500">
-              PDF files up to 10MB
-            </p>
+            <p className="text-xs text-gray-500">PDF files up to 10MB</p>
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
