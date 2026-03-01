@@ -1,5 +1,4 @@
-from pypdf import PdfReader
-import io
+
 
 
 # -------- PDF TEXT EXTRACTION --------
